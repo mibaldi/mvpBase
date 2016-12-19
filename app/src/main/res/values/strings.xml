@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MosbyViewState</string>
+    <string name="error_connection_title">No hay conexión a internet</string>
+    <string name="error_connection_description">Lo sentimos, pero para continuar necesitas tener acceso a internet.</string>
+    <string name="error_server_title">Error de acceso</string>
+    <string name="error_server_description">Lo sentimos, pero ahora mismo no es posible tramitar tu solicitud. Inténtalo más adelante. Gracias.</string>
+</resources>
