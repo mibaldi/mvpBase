@@ -14,8 +14,8 @@ import javax.inject.Inject;
 
 public class Feature1InteractorImpl implements Feature1Interactor {
 
-    UserDataRepository userDataRepository;
-    JobManager jobManager;
+    public UserDataRepository userDataRepository;
+    public JobManager jobManager;
 
     @Inject
     public Feature1InteractorImpl(UserDataRepository userDataRepository,JobManager jobManager){
@@ -25,7 +25,7 @@ public class Feature1InteractorImpl implements Feature1Interactor {
 
     @Override
     public void getUser(final CallbackListener<String> listener) {
-        jobManager.addJobInBackground(new FeatureJob(userDataRepository, new CallbackListener<String>() {
+        jobManager.addJobInBackground(new FeatureJob(userDataRepository,new CallbackListener<String>() {
             @Override
             public void onSuccess(String result) {
                 listener.onSuccess(result);

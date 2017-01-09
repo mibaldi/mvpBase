@@ -1,6 +1,8 @@
 package com.mibaldi.mosbyviewstate.domain.features.feature1;
 
 
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -15,14 +17,15 @@ import javax.inject.Inject;
 
 public class FeatureJob extends Job {
     public static final int PRIORITY = 1;
-    private final CallbackListener<String> listener;
-    UserDataRepository userDataRepository;
+    public final CallbackListener<String> listener;
+    public UserDataRepository userDataRepository;
+    public String name = "";
 
 
-    public FeatureJob(UserDataRepository userDataRepository, CallbackListener<String> listener){
-        super(new Params(PRIORITY).requireNetwork().persist());
-        this.listener = listener;
+    public FeatureJob(UserDataRepository userDataRepository,CallbackListener<String> listener) {
+        super(new Params(PRIORITY).requireNetwork());
         this.userDataRepository = userDataRepository;
+        this.listener = listener;
     }
 
 
@@ -31,6 +34,7 @@ public class FeatureJob extends Job {
         // Job has been saved to disk.
         // This is a good place to dispatch a UI event to indicate the job will eventually run.
         // In this example, it would be good to update the UI with the newly posted tweet.
+
     }
 
     @Override
@@ -38,17 +42,33 @@ public class FeatureJob extends Job {
         // Job logic goes here. In this example, the network call to post to Twitter is done here.
         // All work done here should be synchronous, a job is removed from the queue once
         // onRun() finishes.
+
         userDataRepository.getUser(new CallbackListener<String>() {
             @Override
-            public void onSuccess(String result) {
-                listener.onSuccess(result);
+            public void onSuccess(final String result) {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+                        listener.onSuccess(result);
+                    }
+                });
             }
 
             @Override
-            public void onError(MyError myError) {
-                listener.onError(myError);
+            public void onError(final MyError myError) {
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    public void run() {
+
+                        listener.onError(myError);
+                    }
+                });
             }
         });
+
+
+
+
     }
 
     @Override

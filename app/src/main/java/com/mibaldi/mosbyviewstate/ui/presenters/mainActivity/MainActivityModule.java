@@ -6,6 +6,7 @@ import com.birbit.android.jobqueue.Params;
 import com.mibaldi.mosbyviewstate.data.repositories.UserDataRepository;
 import com.mibaldi.mosbyviewstate.domain.features.feature1.Feature1Interactor;
 import com.mibaldi.mosbyviewstate.domain.features.feature1.Feature1InteractorImpl;
+import com.mibaldi.mosbyviewstate.domain.features.feature1.FeatureJob;
 
 import dagger.Module;
 import dagger.Provides;
@@ -15,7 +16,7 @@ public class MainActivityModule {
     public MainActivityModule(){}
 
     @Provides
-    public Feature1Interactor getFeature1Interactor(UserDataRepository userDataRepository, JobManager jobManager){
+    public Feature1Interactor getFeature1Interactor(UserDataRepository userDataRepository,JobManager jobManager){
         return new Feature1InteractorImpl(userDataRepository,jobManager);
     }
 }

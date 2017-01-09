@@ -23,7 +23,6 @@ public class MainActivityPresenter extends BasePresenter<MainActivityView> {
     @Inject
     Feature1Interactor feature1Interactor;
 
-
     @Inject
     MainActivityPresenter() {}
 

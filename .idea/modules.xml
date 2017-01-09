@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MosbyViewState.iml" filepath="$PROJECT_DIR$/MosbyViewState.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvpBase.iml" filepath="$PROJECT_DIR$/mvpBase.iml" />
     </modules>
   </component>
 </project>
